@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/shard/VSCode/CompMath/Particle/build",
+  "command": "/usr/bin/clang -I/home/shard/VSCode/CompMath/Particle/src -g -std=gnu17 -o CMakeFiles/Particle.dir/src/main.c.o -c /home/shard/VSCode/CompMath/Particle/src/main.c",
+  "file": "/home/shard/VSCode/CompMath/Particle/src/main.c",
+  "output": "CMakeFiles/Particle.dir/src/main.c.o"
+},
+{
+  "directory": "/home/shard/VSCode/CompMath/Particle/build",
+  "command": "/usr/bin/clang -I/home/shard/VSCode/CompMath/Particle/src -g -std=gnu17 -o CMakeFiles/Particle.dir/src/equations.c.o -c /home/shard/VSCode/CompMath/Particle/src/equations.c",
+  "file": "/home/shard/VSCode/CompMath/Particle/src/equations.c",
+  "output": "CMakeFiles/Particle.dir/src/equations.c.o"
+},
+{
+  "directory": "/home/shard/VSCode/CompMath/Particle/build",
+  "command": "/usr/bin/clang -I/home/shard/VSCode/CompMath/Particle/src -g -std=gnu17 -o CMakeFiles/Particle.dir/src/tables/tableau.c.o -c /home/shard/VSCode/CompMath/Particle/src/tables/tableau.c",
+  "file": "/home/shard/VSCode/CompMath/Particle/src/tables/tableau.c",
+  "output": "CMakeFiles/Particle.dir/src/tables/tableau.c.o"
+},
+{
+  "directory": "/home/shard/VSCode/CompMath/Particle/build",
+  "command": "/usr/bin/clang -I/home/shard/VSCode/CompMath/Particle/src -g -std=gnu17 -o CMakeFiles/Particle.dir/src/structures/math/vector3D.c.o -c /home/shard/VSCode/CompMath/Particle/src/structures/math/vector3D.c",
+  "file": "/home/shard/VSCode/CompMath/Particle/src/structures/math/vector3D.c",
+  "output": "CMakeFiles/Particle.dir/src/structures/math/vector3D.c.o"
+}
+]
