@@ -14,6 +14,9 @@ struct butcher_tableau
 	size_t s;
 };
 
+
+bool RK_midpoint(struct butcher_tableau *tableau);
+bool RK4_38(struct butcher_tableau *tableau);
 bool RK4_classic(struct butcher_tableau *tableau);
 bool create_butcher_tableau(struct butcher_tableau *tableau, size_t order);
 void destroy_tableau(struct butcher_tableau *tableau);

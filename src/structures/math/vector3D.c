@@ -10,7 +10,7 @@ void cross(struct vector3D *dst, const struct vector3D *lhs, const struct vector
 	}
 
 	dst->x = lhs->y * rhs->z - lhs->z * rhs->y;
-	dst->x = lhs->z * rhs->x - lhs->x * rhs->z;
+	dst->y = lhs->z * rhs->x - lhs->x * rhs->z;
 	dst->z = lhs->x * rhs->y - lhs->y * rhs->x;
 }
 
@@ -42,7 +42,7 @@ void add(struct vector3D *vector, const struct vector3D *other)
 
 void add_scaled(struct vector3D *vector, const struct vector3D *other, double scalar)
 {
-	if (vector == NULL || other == NULL)
+	if (vector == NULL || other == NULL || scalar == 0)
 	{
 		return;
 	}

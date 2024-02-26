@@ -11,4 +11,10 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3")
 include_directories(src)
 
 # Add your source files
-add_executable(Particle src/main.c src/equations.c src/tables/tableau.c src/structures/math/vector3D.c)
+add_executable(Particle src/main.c
+			src/io/io.c
+			src/simulation_core/equations.c
+			src/simulation_core/simulation.c
+			src/structures/general/dynarray.c
+			src/structures/math/vector3D.c
+			src/structures/tables/tableau.c)

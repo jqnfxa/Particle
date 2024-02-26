@@ -1,44 +1,52 @@
 #include <stdio.h>
-#include "tables/tableau.h"
-#include "equations.h"
-#include "structures/system_state.h"
+#include "io/io.h"
+#include "simulation_core/simulation.h"
+#include "structures/general/dynarray.h"
+#include "structures/simulation/system_state.h"
 
 
-int main()
+int main(int argc, char *argv[])
 {
-	// read information from input file
-
-	// run calculations
-	double t = 1e6;
-	double dt = 1e9;
-
-	struct butcher_tableau table;
-
-	if (!RK4_classic(&table))
+	// check if the correct number of arguments are provided
+	if (argc < 3)
 	{
-		perror("Failed to initialize butcher tableau");
+		//perror("Usage: %s <input_file> <output_file>\n", argv[0]);
+		return 1;
 	}
 
+
+	const char *input_filename = argv[1];
+	const char *output_filename = argv[2];
+
 	struct system_state state;
-
-	state.particle.r.x = 0;
-	state.particle.r.y = 0;
-	state.particle.r.z = 0;
-	state.particle.v.x = 0;
-	state.particle.v.y = 0;
-	state.particle.v.z = 0;
-	state.E.x = 0;
-	state.E.y = 0;
-	state.E.z = 0;
-	state.B.x = 0;
-	state.B.y = 0;
-	state.B.z = 0;
-
-	calculate_next_state_rk(&state, &table, dt);
-
-	// log calculations to output file
+	struct vector3D *r;
+	struct vector3D *v;
 
 
-	destroy_tableau(&table);
+	// load initial state
+	if (!load_simulation_parameters(&state, input_filename))
+	{
+		return 1;
+	}
+
+
+	// setup butcher tableau and allocate memory for r,v
+	if (!setup_simulation(&r, &v, &state))
+	{
+		return 1;
+	}
+
+
+	// TODO: error handling
+	// simulation
+	run_simulation(r, v, &state);
+	unload_data(r, v, output_filename, state.time.dt);
+
+
+	// clean up allocated memory
+	destroy_tableau(&state.tableau);
+	dynarray_destroy(r);
+	dynarray_destroy(v);
+
 	return 0;
 }
