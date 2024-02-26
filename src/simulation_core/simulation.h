@@ -6,7 +6,6 @@
 #include "../structures/general/dynarray.h"
 
 
-bool setup_simulation(struct vector3D **r, struct vector3D **v, struct system_state *state);
 bool run_simulation(struct vector3D *r, struct vector3D *v, struct system_state *state);
 
 #endif // SIMULATION_H

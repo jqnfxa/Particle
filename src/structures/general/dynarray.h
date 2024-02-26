@@ -1,8 +1,8 @@
-#ifndef DYNARRAY
-#define DYNARRAY
+#ifndef DYNARRAY_H
+#define DYNARRAY_H
 
-#include <stdlib.h>     // malloc
-#include <string.h>     // memcpy
+#include <stdlib.h>
+#include <string.h>
 
 /* Structure of a dynarray:
  * size_t capacity
@@ -49,4 +49,4 @@ void _dynarray_pop(void *arr, void *dest);
 #define dynarray_length(arr) _dynarray_field_get(arr, LENGTH)
 #define dynarray_stride(arr) _dynarray_field_get(arr, STRIDE)
 
-#endif // DYNARRAY
+#endif // DYNARRAY_H

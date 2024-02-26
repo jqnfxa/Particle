@@ -15,10 +15,19 @@ struct butcher_tableau
 };
 
 
-bool RK_midpoint(struct butcher_tableau *tableau);
-bool RK4_38(struct butcher_tableau *tableau);
-bool RK4_classic(struct butcher_tableau *tableau);
+/**
+ * @brief creates butcher tableau for given order
+ * @param tableau output structure
+ * @param order order of tableau
+ * @return `true` if tableau successfully created and `false` otherwise
+ */
 bool create_butcher_tableau(struct butcher_tableau *tableau, size_t order);
+
+
+/**
+ * @brief clean up allocated memory
+ * @param tableau tableau to clean
+ */
 void destroy_tableau(struct butcher_tableau *tableau);
 
 

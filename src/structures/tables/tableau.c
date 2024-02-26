@@ -2,65 +2,6 @@
 #include "tableau.h"
 
 
-bool RK_midpoint(struct butcher_tableau *tableau)
-{
-	if (tableau == NULL || !create_butcher_tableau(tableau, 2))
-	{
-		return false;
-	}
-
-	tableau->a[1][0] = 1.0 / 2.0;
-
-	tableau->b[0] = 0;
-	tableau->b[1] = 1;
-
-	return true;
-}
-
-
-bool RK4_38(struct butcher_tableau *tableau)
-{
-	if (tableau == NULL || !create_butcher_tableau(tableau, 4))
-	{
-		return false;
-	}
-
-	tableau->a[1][0] = 1.0 / 3.0;
-	tableau->a[2][0] = -1.0 / 3.0;
-	tableau->a[2][1] = 1.0;
-	tableau->a[3][0] = 1.0;
-	tableau->a[3][1] = -1.0;
-	tableau->a[3][2] = 1.0;
-
-	tableau->b[0] = 1.0 / 8.0;
-	tableau->b[1] = 3.0 / 8.0;
-	tableau->b[2] = 3.0 / 8.0;
-	tableau->b[3] = 1.0 / 8.0;
-
-	return true;
-}
-
-
-bool RK4_classic(struct butcher_tableau *tableau)
-{
-	if (tableau == NULL || !create_butcher_tableau(tableau, 4))
-	{
-		return false;
-	}
-
-	tableau->a[1][0] = 0.5;
-	tableau->a[2][1] = 0.5;
-	tableau->a[3][2] = 1.0;
-
-	tableau->b[0] = 1.0 / 6.0;
-	tableau->b[1] = 1.0 / 3.0;
-	tableau->b[2] = 1.0 / 3.0;
-	tableau->b[3] = 1.0 / 6.0;
-
-	return true;
-}
-
-
 bool create_butcher_tableau(struct butcher_tableau *tableau, size_t order)
 {
 	if (tableau == NULL || order == 0)
@@ -68,7 +9,6 @@ bool create_butcher_tableau(struct butcher_tableau *tableau, size_t order)
 		return false;
 	}
 
-	// TODO: use memset instead?
 	tableau->s = order;
 	tableau->a = NULL;
 	tableau->b = NULL;

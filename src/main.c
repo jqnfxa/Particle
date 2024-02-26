@@ -8,39 +8,44 @@
 int main(int argc, char *argv[])
 {
 	// check if the correct number of arguments are provided
-	if (argc < 3)
+	if (argc < 4)
 	{
-		//perror("Usage: %s <input_file> <output_file>\n", argv[0]);
+		fprintf(stderr, "Usage: '%s' <input_file> <tableau_file> <output_file>\n", argv[0]);
 		return 1;
 	}
 
-
-	const char *input_filename = argv[1];
-	const char *output_filename = argv[2];
-
+	// initialize system
+	size_t total_steps = 0;
 	struct system_state state;
-	struct vector3D *r;
-	struct vector3D *v;
+	struct vector3D *r = NULL;
+	struct vector3D *v = NULL;
 
-
-	// load initial state
-	if (!load_simulation_parameters(&state, input_filename))
+	if (!setup_simulation(&state, argv[1], argv[2]))
 	{
 		return 1;
 	}
 
-
-	// setup butcher tableau and allocate memory for r,v
-	if (!setup_simulation(&r, &v, &state))
+	do
 	{
-		return 1;
-	}
+		if (!setup_simulation(&state, argv[1], argv[2]))
+		{
+			break;
+		}
 
+		total_steps = state.time.total_time / state.time.dt / state.time.time_step;
+		r = (struct vector3D *)dynarray_create_prealloc(struct vector3D, total_steps + 1);
+		v = (struct vector3D *)dynarray_create_prealloc(struct vector3D, total_steps + 1);
 
-	// TODO: error handling
-	// simulation
-	run_simulation(r, v, &state);
-	unload_data(r, v, output_filename, state.time.dt);
+		if (!run_simulation(r, v, &state))
+		{
+			break;
+		}
+
+		if (!unload_data(&state.time, r, v, argv[3]))
+		{
+			break;
+		}
+	} while (false);
 
 
 	// clean up allocated memory
