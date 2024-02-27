@@ -182,7 +182,7 @@ bool unload_data(struct time *time, struct vector3D *r, struct vector3D *v, cons
 
 	for (size_t i = 0; i < len; ++i, current_time += time->dt * time->time_step)
 	{
-		written_size = fprintf(file, "%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n", current_time, r[i].x, r[i].y, r[i].z, v[i].x, v[i].y, v[i].z);
+		written_size = fprintf(file, "%.9lf\t%.9lf\t%.9lf\t%.9lf\t%.9lf\t%.9lf\t%.9lf\n", current_time, r[i].x, r[i].y, r[i].z, v[i].x, v[i].y, v[i].z);
 
 		if (written_size < 0)
 		{

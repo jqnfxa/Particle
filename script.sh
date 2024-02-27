@@ -1,24 +1,22 @@
 #!/bin/bash
 
-# Check if the correct number of arguments is provided
-if [ $# -ne  3 ]; then
-    echo "Usage: ./script.sh <input> <method> <output>"
-    exit  1
-fi
+# Default values
+default_method="./data/methods/dp8.txt"
+default_input_file="./data/input.txt"
+default_output_file="./data/output.txt"
 
-# Assign the arguments to variables for clarity
-input_file="$1"
-method="$2"
-output_file="$3"
+# Assign the arguments to variables for clarity, with default values if arguments are empty
+method="${1:-$default_method}"
+input_file="${2:-$default_input_file}"
+output_file="${3:-$default_output_file}"
 
-# Run the compiled program with specific input and output files
+# Run the simulation
 ./build/Particle "$input_file" "$method" "$output_file"
 
 # Check if the previous command was successful
 if [ $? -eq  0 ]; then
-    echo "Simulation completed successfully."
-    # Run the Python script
-    python3 ./plot/plot_xyz.py "$output_file"
+    # Run the Python plotter
+    python3 ./plot/plot.py "$output_file"
 else
     echo "Simulation failed. Exiting."
     exit  1
