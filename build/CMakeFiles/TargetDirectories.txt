@@ -1,3 +1,0 @@
-/home/shard/VSCode/CompMath/Particle/build/CMakeFiles/Particle.dir
-/home/shard/VSCode/CompMath/Particle/build/CMakeFiles/edit_cache.dir
-/home/shard/VSCode/CompMath/Particle/build/CMakeFiles/rebuild_cache.dir
