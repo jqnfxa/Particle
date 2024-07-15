@@ -35,7 +35,3 @@ The simulation generates three types of plots to visualize the particle's motion
 
 3. **Animated   3D Plot**: An animated version of the static   3D plot, also showing the particle's motion over time.
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
